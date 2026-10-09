@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sayantika! 🎉</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            animation: popup 0.8s ease-out;
+        }
+
+        @keyframes popup {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Stickers & Floating Emojis */
+        .sticker-top {
+            position: absolute;
+            top: -25px;
+            right: -10px;
+            font-size: 45px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+        .sticker-left {
+            position: absolute;
+            bottom: 20px;
+            left: -15px;
+            font-size: 40px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(10deg); }
+            50% { transform: translateY(-10px) rotate(-10deg); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .title {
+            color: #ff3366;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* Interactive Cake */
+        .cake-wrapper {
+            margin: 30px auto;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+        }
+
+        .cake {
+            width: 160px;
+            height: 130px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .plate {
+            width: 180px;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .layer {
+            position: absolute;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+        .layer-bottom {
+            height: 40px;
+            background: #ff6b81;
+            bottom: 12px;
+        }
+        .layer-middle {
+            height: 35px;
+            width: 130px;
+            background: #ff85a2;
+            bottom: 52px;
+            left: 15px;
+        }
+        .layer-top {
+            height: 30px;
+            width: 100px;
+            background: #ffa6c1;
+            bottom: 87px;
+            left: 30px;
+        }
+
+        /* Candle & Flame */
+        .candle {
+            width: 12px;
+            height: 30px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff3366 5px, #ff3366 10px);
+            position: absolute;
+            bottom: 117px;
+            left: 74px;
+            border-radius: 3px;
+        }
+
+        .flame {
+            width: 12px;
+            height: 18px;
+            background: orange;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -18px;
+            left: 0;
+            box-shadow: 0 0 10px orange, 0 0 20px yellow;
+            animation: flicker 0.6s infinite alternate;
+        }
+
+        .flame.off {
+            display: none;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .tap-hint {
+            font-size: 14px;
+            color: #ff3366;
+            font-weight: 600;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Wish Message */
+        .message-box {
+            margin-top: 20px;
+            background: #fff0f5;
+            padding: 18px;
+            border-radius: 15px;
+            border: 2px dashed #ffb6c1;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .btn-music {
+            margin-top: 20px;
+            background: #ff3366;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-music:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body onclick="playAudioOnce()">
+
+    <!-- Audio Player (Happy Birthday Tune) -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a738c2.mp3?filename=happy-birthday-15285.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="sticker-top">👑🎈</div>
+        <div class="sticker-left">🎁✨</div>
+
+        <h1 class="title">Happy Birthday!</h1>
+        <p class="subtitle">শুভ জন্মদিন, <b>সায়ন্তিকা!</b> 🌸</p>
+
+        <!-- Interactive Cake -->
+        <div class="cake-wrapper" onclick="blowCandle(event)">
+            <div class="cake">
+                <div class="plate"></div>
+                <div class="layer layer-bottom"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-top"></div>
+                <div class="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+            </div>
+            <p class="tap-hint" id="hintText">🕯️ কেকের মোমবাতিতে টাচ কর!</p>
+        </div>
+
+        <!-- Wish Message -->
+        <div class="message-box">
+            🎂 <b>প্রিয় সায়ন্তিকা,</b><br>
+            তোর জীবনের প্রতিটি দিন ভরে উঠুক আনন্দ, সাফল্য আর অনেক অনেক হাসিতে! 
+            আজকের দিনটি তোর জন্য অত্যন্ত বিশেষ ও স্মরণীয় হয়ে থাকুক। সবসময় এরকম পাগলামি আর মিষ্টি হাসিতেই থাকবি! 💖✨
+        </div>
+
+        <button class="btn-music" onclick="toggleMusic(event)">🎵 সাউন্ড অন/অফ</button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        let musicStarted = false;
+
+        function playAudioOnce() {
+            if (!musicStarted) {
+                audio.play().catch(() => {});
+                musicStarted = true;
+            }
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation();
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function blowCandle(e) {
+            e.stopPropagation();
+            const flame = document.getElementById('flame');
+            const hintText = document.getElementById('hintText');
+
+            if (!flame.classList.contains('off')) {
+                flame.classList.add('off');
+                hintText.innerText = "🎉 Happy Birthday Sayantika! 🥳";
+                hintText.style.color = "#2ed573";
+                
+                // Trigger Confetti
+                triggerConfetti();
+            }
+        }
+
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</body>
+  </html>
+          
